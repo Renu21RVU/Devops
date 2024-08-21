@@ -28,9 +28,9 @@ jobs:
         run: |
           jupyter nbconvert --to notebook --execute "ML Algo.ipynb" --output "ML Algo_output.ipynb"
 
-      # Optional: Upload the executed notebook as an artifact (if needed)
-      - name: Upload Notebook as Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: executed-notebook
-          path: ML Algo_output.ipynb
+      # # Optional: Upload the executed notebook as an artifact (if needed)
+      # - name: Upload Notebook as Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: executed-notebook
+      #     path: ML Algo_output.ipynb
