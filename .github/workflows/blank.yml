@@ -1,0 +1,35 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install necessary dependencies to run the notebook (if needed)
+      - name: Install Python and Jupyter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install notebook
+
+      # Run the Jupyter notebook
+      - name: Execute Jupyter Notebook
+        run: |
+          jupyter nbconvert --to notebook --execute "ML Algo.ipynb" --output "ML Algo_output.ipynb"
+
+      # Optional: Upload the executed notebook as an artifact (if needed)
+      - name: Upload Notebook as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: executed-notebook
+          path: ML Algo_output.ipynb
